@@ -1,38 +1,42 @@
-import { useGSAP } from "@gsap/react";
-import {navLinks} from "/constants/index.js";
-import gsap from "gsap";
-export default function NavBar () {
-    useGSAP(()=> {
-        const navTween = gsap.timeline( {
-                 ScrollTrigger : {
-            trigger : 'nav' ,
-            start : 'bottom top'
-             }
-        });
-       navTween.fromTo('nav', {backgroundColor: 'Transparent'} , {
-        backgroundColor: '#00000050' ,
-        backgroundFilter : 'blur(10px)',
-        duration: 1,
-        ease : 'power1.inOut'
-       });
-       
-    })
-    return (
-        <nav>
-            <div className="px-20">
-                <a href="#home" className="flex items-center gap-2">
-                    <img src="/images/logo.png" alt="Logo" />
-                    <p>Velvet Pour</p>
-                </a>
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react'
 
-                <ul>
-                 {navLinks.map((link) => (
-                    <li key={link.id}>
-                        <a href={`#${link.id}`}>{link.title}</a>
-                    </li>
-                 ))}
-                </ul>
-            </div>
-        </nav>
-    )
+import { navLinks } from '../../constants/index.js'
+
+const Navbar = () => {
+ useGSAP(() => {
+	const navTween = gsap.timeline({
+	 scrollTrigger: {
+		trigger: 'nav',
+		start: 'bottom top'
+	 }
+	});
+	
+	navTween.fromTo('nav', { backgroundColor: 'transparent' }, {
+	 backgroundColor: '#00000050',
+	 backgroundFilter: 'blur(10px)',
+	 duration: 1,
+	 ease: 'power1.inOut'
+	});
+ })
+ 
+ return (
+	<nav>
+	 <div className='md:px-10'>
+		<a href="#home" className="flex items-center gap-2">
+		 <img src="/images/logo.png" alt="logo" />
+		 <p>Velvet Pour</p>
+		</a>
+		
+		<ul>
+		 {navLinks.map((link) => (
+			<li key={link.id}>
+			 <a href={`#${link.id}`}>{link.title}</a>
+			</li>
+		 ))}
+		</ul>
+	 </div>
+	</nav>
+ )
 }
+export default Navbar
